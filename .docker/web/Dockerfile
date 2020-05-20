@@ -1,13 +1,11 @@
-FROM php:7.1.0-apache
+FROM php:7.3-apache
 
-MAINTAINER Donovan Tengblad
-
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
 RUN a2enmod rewrite expires ssl headers
 
 RUN apt-get update && apt-get install -y \
   git \
-  mysql-client \
+  mariadb-client \
   wget \
   unzip \
   zip \
@@ -17,19 +15,21 @@ RUN apt-get update && apt-get install -y \
   wkhtmltopdf \
   xz-utils \
   xfonts-75dpi \
-  libav-tools \
+  ffmpeg \
   libldap2-dev \
-  libpng12-dev \
+  libpng-dev \
   libjpeg-dev \
   zlib1g-dev \
   libicu-dev \
+  libzip-dev \
+  libonig-dev \
   g++ \
   ssl-cert \
   curl \
   nodejs\
   && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install -j$(nproc) xml mcrypt mysqli curl zip mbstring gettext pdo_mysql gd exif mbstring
+RUN docker-php-ext-install -j$(nproc) xml mysqli curl zip mbstring gettext pdo_mysql gd exif mbstring
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && docker-php-ext-install ldap
