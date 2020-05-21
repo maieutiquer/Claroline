@@ -26,7 +26,7 @@
         "sync": [
             "composer fetch",
             "composer build",
-            "php app/console claroline:update --env=prod",
+            "php app/console claroline:install",
             "composer disable-maintenance"
         ],
         "sync-dev": [
@@ -36,7 +36,7 @@
             "composer disable-maintenance"
         ],
         "fetch": [
-            "composer install --prefer-dist --no-dev --optimize-autoloader",
+            "composer update",
             "npm install"
         ],
         "fetch-dev": [
