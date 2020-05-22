@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   web:
+    container_name: claroline-web
     build: .docker/web/
     ports:
        - "80:80"
@@ -23,6 +24,7 @@ services:
        app_net_caro:
          ipv4_address: 172.22.9.6
   db:
+    container_name: claroline-db
     environment:
       MYSQL_ROOT_PASSWORD: claroline
       MYSQL_USER: claroline

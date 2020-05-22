@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Compose Actions Workflow
 
 on:
   push:
@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker-compose up
+    - name: Build the stack
+      run: docker-compose up -d
+    - name: Test
+      run: docker run --network container:claroline-web appropriate/curl -s --retry 20 --max-time 20 --retry-max-time 1200 --retry-connrefused http://localhost/
