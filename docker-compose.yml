@@ -10,7 +10,7 @@ services:
     environment:
       APP_URL: caroline.exemple.com
       ENV: PROD
-      DB_HOST: claroline_db_1
+      DB_HOST: claroline-db
       DB_NAME: claroline
       DB_USER: claroline
       DB_PASSWORD: claroline
