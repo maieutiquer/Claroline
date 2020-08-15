@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
   wkhtmltopdf \
   xz-utils \
   xfonts-75dpi \
+  libjpeg-turbo8 \
   ffmpeg \
   libldap2-dev \
   libpng-dev \
