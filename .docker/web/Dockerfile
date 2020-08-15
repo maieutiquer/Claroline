@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
   wkhtmltopdf \
   xz-utils \
   xfonts-75dpi \
-  libjpeg62-turbo-dev \
   ffmpeg \
   libldap2-dev \
   libpng-dev \
@@ -40,14 +39,14 @@ RUN mv composer.phar /usr/local/bin/composer
 
 # RUN wget http://downloads.wkhtmltopdf.org/0.12/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 # RUN tar -xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
-RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
-RUN dpkg -i wkhtmltox_0.12.6-1.focal_amd64.deb
+RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb
+RUN dpkg -i wkhtmltox_0.12.6-1.buster_amd64.deb
 
 # RUN mv wkhtmltox/bin/wkhtmltopdf /usr/bin/wkhtmltopdf.sh
 # RUN mv wkhtmltox/bin/wkhtmltoimage /usr/bin/wkhtmltoimage.sh
 # RUN rm -r wkhtmltox
 # RUN rm wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
-RUN rm wkhtmltox_0.12.6-1.focal_amd64.deb
+RUN rm wkhtmltox_0.12.6-1.buster_amd64.deb
 
 RUN pecl install apcu-beta \
 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini
