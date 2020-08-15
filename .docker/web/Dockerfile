@@ -40,7 +40,7 @@ RUN mv composer.phar /usr/local/bin/composer
 # RUN wget http://downloads.wkhtmltopdf.org/0.12/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 # RUN tar -xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
-RUN sudo dpkg -i wkhtmltox_0.12.6-1.focal_amd64.deb
+RUN dpkg -i wkhtmltox_0.12.6-1.focal_amd64.deb
 
 # RUN mv wkhtmltox/bin/wkhtmltopdf /usr/bin/wkhtmltopdf.sh
 # RUN mv wkhtmltox/bin/wkhtmltoimage /usr/bin/wkhtmltoimage.sh
