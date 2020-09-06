@@ -2,19 +2,19 @@ name: Docker Compose Actions Workflow
 
 on:
   push:
-    branches: [ update-docker-compose-config ]
+    branches: [update-docker-compose-config]
   pull_request:
-    branches: [ update-docker-compose-config ]
+    branches: [update-docker-compose-config]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the stack
-      run: docker-compose up -d
-    - name: Test
-      run: docker run --network container:claroline-web appropriate/curl -s --retry 20 --max-time 20 --retry-max-time 1200 --retry-connrefused http://localhost/
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Test 127.0.0.1
+        run: docker run --network container:claroline-web appropriate/curl -s --retry 10 --retry-connrefused http://127.0.0.1/
+      - name: Test 172.22.9.6
+        run: docker run --network container:claroline-web appropriate/curl -s --retry 10 --retry-connrefused http://172.22.9.6/
