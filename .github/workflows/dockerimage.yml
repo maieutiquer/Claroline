@@ -15,6 +15,6 @@ jobs:
       - name: Build the stack
         run: docker-compose up -d
       - name: Test 127.0.0.1
-        run: docker run --network container:claroline-web appropriate/curl -s --retry 10 --retry-connrefused http://127.0.0.1/
+        run: docker run --network container:claroline-web appropriate/curl -s  --connect-timeout 50 --max-time 100 --retry 500 --retry-delay 10 --retry-max-time 400 --retry-all-errors http://127.0.0.1/
       - name: Test 172.22.9.6
-        run: docker run --network container:claroline-web appropriate/curl -s --retry 10 --retry-connrefused http://172.22.9.6/
+        run: docker run --network container:claroline-web appropriate/curl -s  --connect-timeout 50 --max-time 100 --retry 500 --retry-delay 10 --retry-max-time 400 --retry-all-errors http://172.22.9.6/

@@ -1,10 +1,10 @@
-version: '3.7'
+version: "3.8"
 services:
   web:
     container_name: claroline-web
     build: .docker/web/
     ports:
-       - "80:80"
+      - "80:80"
     volumes:
       - .:/var/www/html/claroline # This is where the symfony files are stored
     environment:
@@ -14,15 +14,15 @@ services:
       DB_NAME: claroline
       DB_USER: claroline
       DB_PASSWORD: claroline
-      SECRET: 'secret-claroline'
+      SECRET: "secret-claroline"
       ADMIN_FIRSTNAME: John
       ADMIN_LASTNAME: Doe
       ADMIN_USERNAME: root
       ADMIN_PASSWORD: claroline
       ADMIN_EMAIL: claroline@example.com
     networks:
-       app_net_caro:
-         ipv4_address: 172.22.9.6
+      app_net_caro:
+        ipv4_address: 172.22.9.6
   db:
     container_name: claroline-db
     environment:
@@ -33,15 +33,15 @@ services:
     image: mysql:8.0
     command: --sql_mode="" --default_authentication_plugin="mysql_native_password"
     ports:
-       - "3306:3306"
+      - "3306:3306"
     volumes:
       - ./mysql_data:/var/lib/mysql
     networks:
-       app_net_caro:
-         ipv4_address: 172.22.9.5
+      app_net_caro:
+        ipv4_address: 172.22.9.5
 networks:
   app_net_caro:
     ipam:
       # driver: bridge
       config:
-       - subnet: 172.22.9.0/24
+        - subnet: 172.22.9.0/24
