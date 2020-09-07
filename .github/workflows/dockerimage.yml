@@ -1,0 +1,16 @@
+name: Docker Compose Actions Workflow
+
+on:
+  push:
+    branches: [update-docker-compose-config]
+  pull_request:
+    branches: [update-docker-compose-config]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d

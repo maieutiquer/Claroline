@@ -3,7 +3,8 @@
 set -e
 
 # Wait for MySQL to respond, depends on mysql-client
-while ! mysqladmin ping -h"$DB_HOST" --silent; do
+echo "Waiting for $DB_HOST..."
+while ! mysqladmin ping -h "$DB_HOST" --silent; do
     echo "MySQL is down"
     sleep 1
 done
@@ -11,7 +12,7 @@ done
 echo "MySQL is up"
 
 if [ -f installed ]; then
-   echo "ClarolineConnect is allready installed"
+   echo "ClarolineConnect is already installed"
 else
   echo "Executing configuration script"
   php scripts/configure.php
