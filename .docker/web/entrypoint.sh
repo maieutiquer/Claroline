@@ -52,4 +52,9 @@ fi
 echo "Setting correct file permissions"
 chmod -R 777 app/cache app/config app/logs app/sessions files web/uploads
 
-exec "$@"
+if [[ "$CI" == "true" ]]; then
+  apache2 start
+  curl -s --retry 10 --retry-connrefused http://127.0.0.1/
+else
+  exec "$@"
+fi
