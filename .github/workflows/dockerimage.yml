@@ -2,9 +2,9 @@ name: Docker Compose Actions Workflow
 
 on:
   push:
-    branches: [update-docker-compose-config]
+    branches: [13.x-docker]
   pull_request:
-    branches: [update-docker-compose-config]
+    branches: [13.x-docker]
 
 jobs:
   build:
