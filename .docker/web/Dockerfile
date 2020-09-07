@@ -1,5 +1,7 @@
 FROM php:7.4-apache
 
+LABEL maintainer="Donovan Tengblad"
+
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
 RUN a2enmod rewrite expires ssl headers
 
