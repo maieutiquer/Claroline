@@ -50,7 +50,7 @@ else
 fi
 
 echo "Setting correct file permissions"
-chmod -R 777 app/cache app/config app/logs app/sessions files web/uploads
+chmod -R 777 app/cache app/config app/logs app/sessions files
 
 if [[ "$CI" == "true" ]]; then
   apache2 start
