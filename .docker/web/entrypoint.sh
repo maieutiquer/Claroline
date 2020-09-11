@@ -18,7 +18,7 @@ else
   php scripts/configure.php
 
   echo "Composer install"
-  composer install
+  composer update
   npm install
   composer build
   php bin/console claroline:install
