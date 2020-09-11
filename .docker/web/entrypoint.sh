@@ -49,16 +49,11 @@ else
   touch installed
 fi
 
+# temporary workaround for missing folders
+mkdir -p var/sessions
+mkdir -p public/uploads
+
 echo "Setting correct file permissions"
 chmod -R 777 var/cache files/config var/log var/sessions files public/uploads
 
-echo "CI is: $CI";
-
-apache2 start
-
-curl -s --retry 10 --retry-connrefused http://127.0.0.1/
-
-#if [[ "$CI" == "true" ]]; then
-#else
-#  exec "$@"
-#fi
+exec "$@"
