@@ -18,11 +18,11 @@ else
   php scripts/configure.php
 
   echo "Composer install"
-  if [[ "$ENV" == "dev" ]]; then
-    composer sync-dev
-  else
-    composer sync
-  fi
+  composer install
+  npm install
+  composer build
+  php bin/console claroline:install
+  composer disable-maintenance
 
   if [[ -v PLATFORM_NAME ]]; then
     echo "Changing platform name to $PLATFORM_NAME";
