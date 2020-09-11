@@ -36,6 +36,24 @@ else
 
   USERS=$(mysql $DB_NAME -u $DB_USER -p$DB_PASSWORD -h $DB_HOST -se "select count(*) from claro_user")
 
+  # BEGIN debug user creation
+  echo "USERS: $USERS"
+  
+  if ["$USERS" == "0"]; then
+    echo "USERS is 0"
+  fi
+
+  echo "ADMIN_FIRSTNAME: $ADMIN_FIRSTNAME"
+  
+  if [-v ADMIN_FIRSTNAME]; then
+    echo "-v ADMIN_FIRSTNAME is truthy"
+  fi
+  
+  if [ "$USERS" == "0" ] && [ -v ADMIN_FIRSTNAME ]; then
+    echo "USERS is 0 and -v ADMIN_FIRSTNAME is truthy"
+  fi
+  # END debug user creation
+
   if [ "$USERS" == "0" ] && [ -v ADMIN_FIRSTNAME ] && [ -v ADMIN_LASTNAME ] && [ -v ADMIN_USERNAME ] && [ -v ADMIN_PASSWORD ]  && [ -v ADMIN_EMAIL ]; then
     echo '*********************************************************************************************************************'
     echo "Creating default admin user : $ADMIN_FIRSTNAME $ADMIN_LASTNAME $ADMIN_USERNAME $ADMIN_PASSWORD $ADMIN_EMAIL"
