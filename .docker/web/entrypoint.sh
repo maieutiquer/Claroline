@@ -77,7 +77,7 @@ chmod -R 777 var/cache files/config var/log var/sessions files public/uploads
 echo "Disabling SAML in files/config/bundles.ini"
 # LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = true
 # LightSaml\SpBundle\LightSamlSpBundle = true
-sed 's/LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = true/LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
-sed 's/LightSaml\SpBundle\LightSamlSpBundle = true/LightSaml\SpBundle\LightSamlSpBundle = false/' files/config/bundles.ini
+# sed 's/LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = true/LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
+# sed 's/LightSaml\SpBundle\LightSamlSpBundle = true/LightSaml\SpBundle\LightSamlSpBundle = false/' files/config/bundles.ini
 
 exec "$@"
