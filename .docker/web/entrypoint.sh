@@ -15,7 +15,8 @@ if [ -f installed ]; then
    echo "ClarolineConnect is already installed"
 else
   echo "Executing configuration script"
-  php bin/configure --default
+  php bin/check
+  php bin/configure
 
   composer install --no-dev --optimize-autoloader
 
