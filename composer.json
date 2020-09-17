@@ -4,7 +4,7 @@
     "license": "GPL-3.0+",
     "require": {
         "php": ">=7.2,<7.4",
-        "maieutiquer/distribution": "dev-13.x-no-saml"
+        "claroline/distribution": "13.x-dev"
     },
     "autoload": {
         "psr-4": {
