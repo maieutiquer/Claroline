@@ -20,12 +20,21 @@ else
 
   composer install --no-dev --optimize-autoloader
 
+  sed 's/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = true/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
+  sed 's/LightSaml\\SpBundle\\LightSamlSpBundle = true/LightSaml\\SpBundle\\LightSamlSpBundle = false/' files/config/bundles.ini
+
   npm install
 
   composer build
   npm run webpack
 
+  sed 's/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = true/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
+  sed 's/LightSaml\\SpBundle\\LightSamlSpBundle = true/LightSaml\\SpBundle\\LightSamlSpBundle = false/' files/config/bundles.ini
+
   php bin/console claroline:install
+
+  sed 's/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = true/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
+  sed 's/LightSaml\\SpBundle\\LightSamlSpBundle = true/LightSaml\\SpBundle\\LightSamlSpBundle = false/' files/config/bundles.ini
 
   if [[ -v PLATFORM_NAME ]]; then
     echo "Changing platform name to $PLATFORM_NAME";
@@ -80,7 +89,7 @@ chmod -R 777 var/cache files/config var/log var/sessions files public/uploads
 echo "Disabling SAML in files/config/bundles.ini"
 # LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = true
 # LightSaml\SpBundle\LightSamlSpBundle = true
-sed 's/LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = true/LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
-sed 's/LightSaml\SpBundle\LightSamlSpBundle = true/LightSaml\SpBundle\LightSamlSpBundle = false/' files/config/bundles.ini
+sed 's/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = true/LightSaml\\SymfonyBridgeBundle\\LightSamlSymfonyBridgeBundle = false/' files/config/bundles.ini
+sed 's/LightSaml\\SpBundle\\LightSamlSpBundle = true/LightSaml\\SpBundle\\LightSamlSpBundle = false/' files/config/bundles.ini
 
 exec "$@"
