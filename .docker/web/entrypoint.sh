@@ -15,14 +15,15 @@ if [ -f installed ]; then
    echo "ClarolineConnect is already installed"
 else
   echo "Executing configuration script"
-  php scripts/configure.php
+  php bin/configure --default
 
-  echo "Composer install"
-  composer update
+  composer install --no-dev --optimize-autoloader
+
   npm install
+
   composer build
+
   php bin/console claroline:install
-  composer disable-maintenance
 
   if [[ -v PLATFORM_NAME ]]; then
     echo "Changing platform name to $PLATFORM_NAME";

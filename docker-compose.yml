@@ -8,8 +8,10 @@ services:
     volumes:
       - .:/var/www/html/claroline # This is where the symfony files are stored
     environment:
-      - APP_URL=claroline.exemple.com
+      - APP_URL=claroline.example.com
       - ENV=PROD
+      - APP_ENV=prod
+      - APP_DEBUG=0
       - DB_HOST=claroline-db
       - DB_NAME=claroline
       - DB_USER=claroline
@@ -21,7 +23,7 @@ services:
       - ADMIN_PASSWORD=claroline
       - ADMIN_EMAIL=claroline@example.com
     networks:
-      app_net_caro:
+      app_net_claro:
         ipv4_address: 172.22.9.6
   db:
     container_name: claroline-db
@@ -37,10 +39,10 @@ services:
     volumes:
       - ./mysql_data:/var/lib/mysql
     networks:
-      app_net_caro:
+      app_net_claro:
         ipv4_address: 172.22.9.5
 networks:
-  app_net_caro:
+  app_net_claro:
     ipam:
       # driver: bridge
       config:
