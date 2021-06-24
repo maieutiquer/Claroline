@@ -12,25 +12,10 @@ done
 echo "MySQL is up"
 
 if [ -f files/installed ]; then
-  echo "Claroline is already installed"
+  echo "Claroline is already installed, deleting cache and running update script..."
+  composer delete-cache # fixes SAML errors
 
-  if [ -f files/versionLastUsed.txt ]; then
-    versionLastUsed=$(head -n 1 files/versionLastUsed.txt)
-    currentVersion=$(head -n 1 VERSION.txt)
-
-    if [[ "$versionLastUsed" != "$currentVersion" ]]; then
-      echo "New version detected, updating..."
-      php bin/console claroline:update -vvv
-
-      chmod -R 750 var files config
-      chown -R www-data:www-data var files config
-      composer delete-cache # fixes SAML errors
-    else
-      echo "Claroline version is up to date, rebuilding themes"
-      php bin/console claroline:theme:build
-      composer delete-cache
-    fi
-  fi
+  php bin/console claroline:update -vvv # this command also rebuilds themes and translations
 else
   echo "Installing Claroline..."
   php bin/configure # we run it again to generate parameters.yml inside the volume
@@ -59,15 +44,14 @@ else
     echo 'Users already exist or no admin vars detected, Claroline installed without an admin account'
   fi
 
-  echo "Setting correct file permissions"
-  chmod -R 750 var files config
-  chown -R www-data:www-data var files config
-
-  echo "Clean cache after setting correct permissions, fixes SAML issues"
-  composer delete-cache
   touch files/installed
 fi
 
-cp VERSION.txt files/versionLastUsed.txt
+echo "Clean cache after setting correct permissions, fixes SAML issues"
+composer delete-cache
+
+echo "Setting correct file permissions"
+chmod -R 750 var files config
+chown -R www-data:www-data var files config
 
 exec "$@"
